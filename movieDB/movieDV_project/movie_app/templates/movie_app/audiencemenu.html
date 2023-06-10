@@ -1,0 +1,43 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>USER PAGE</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    {% include "movie_app/showsaudience.html" %}
+    <form method="POST">
+        {{ show_bought|crispy }}
+        {% csrf_token %}
+        <input type="submit" value="Show Tickets" class="btn btn-primary btn-green">
+    </form>
+    {% if bought_tickets %}
+    {{data_field2}}
+    <table class="table">
+        <tbody>
+            {% for row in bought_tickets %}
+                <tr>
+                    {% for value in row %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+  </div>
+
+    <form method="POST">
+    {{ buy_tickets|crispy }}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Purchase</button>
+    </form>
+    <a href={% url 'logout' %}><button type="button" class="btn btn-danger slideleft">LOG OUT</button></a>
+</body>
+</html>

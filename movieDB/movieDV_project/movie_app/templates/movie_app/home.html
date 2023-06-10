@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Movie Database Index</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    {% if username %}
+    <h1>WELCOME {{ username }}</h1>
+    {% include "movie_app/listsbuttons.html" %}
+    {% elif dmName %}
+    <h1>welcome manager {{ dmName }}</h1>
+    {% include "movie_app/managermenu.html" %}
+    {% else %}
+    <p>No index text</p>
+    {% endif %}
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ table_name }}</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+    {% include "movie_app/listbuttons.html" %}
+    <form method="POST" novalidate>
+        {{ data_form|crispy }}
+        {% csrf_token %}
+    </form>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    {% if table_data %}
+    {{info_field}}
+    <table class="table">
+        <tbody>
+            {% for row in table_data %}
+                <tr>
+                    {% for value in row %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No data available for {{ table_name }}!</p>
+    {% endif %}
+</body>
+</html>

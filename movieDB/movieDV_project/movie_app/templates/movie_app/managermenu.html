@@ -1,0 +1,53 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>SAVE USER</h1>
+    {% if input_fail %}
+      <p class="text-danger">INPUT IS INVALID PLEASE TRY AGAIN.</p>
+    {% endif %}
+    <form method="POST">
+      <div class="form-group">
+        {{ add_form|crispy }}
+        {% csrf_token %}
+      </div>
+
+      <button type="submit" class="btn btn-success">SAVE</button>
+    </form>
+  </div>
+  <div class="container">
+    <h1>DELETE USER</h1>
+    <form method="POST">
+      <div class="form-group">
+        {{ delete_form|crispy }}
+        {% csrf_token %}
+      </div>
+
+      <button type="submit" class="btn btn-danger">DELETE</button>
+    </form>
+  </div>
+  <div class="container">
+    <h1>DIRECTOR PLATFORM ID</h1>
+    <form method="POST">
+      <div class="form-group">
+        {{ platform_form|crispy }}
+        {% csrf_token %}
+      </div>
+      <button type="submit" class="btn btn-success">ADD</button>
+    </form>
+  </div>
+  <div class="container">
+    <h1>DATA LISTS</h1>
+    {% include "movie_app/shows.html" %}
+  </div>
+</body>
+</html>

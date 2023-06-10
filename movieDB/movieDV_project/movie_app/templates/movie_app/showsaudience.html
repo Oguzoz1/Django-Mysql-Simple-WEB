@@ -1,0 +1,36 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ table_name }}</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+    <form method="POST">
+        {{ show_button|crispy }}
+        {% csrf_token %}
+        <input type="submit" value="Show Movies" class="btn btn-primary btn-green">
+    </form>
+    </div>
+    {% if table_data %}
+    {{data_field}}
+    <table class="table">
+        <tbody>
+            {% for row in table_data %}
+                <tr>
+                    {% for value in row %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>WELCOME PLEASE PRESS BUTTONS TO INTERACT</p>
+    {% endif %}
+</body>
+</html>
